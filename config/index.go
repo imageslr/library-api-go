@@ -1,0 +1,63 @@
+package config
+
+import (
+	"fmt"
+
+	"github.com/fsnotify/fsnotify"
+	"github.com/lexkong/log"
+	"github.com/spf13/viper"
+)
+
+const (
+	// RunmodeDebug -
+	RunmodeDebug = "debug"
+	// RunmodeRelease -
+	RunmodeRelease = "release"
+	// RunmodeTest -
+	RunmodeTest = "test"
+	// 配置文件路径
+	configFilePath = "./config.yaml"
+	// 配置文件格式
+	configFileType = "yaml"
+)
+
+var (
+	// AppConfig 应用配置
+	AppConfig *appConfig
+	// DBConfig 数据库配置
+	DBConfig *dbConfig
+)
+
+// InitConfig 初始化配置
+func InitConfig(c string, hasLog bool) {
+	if c == "" {
+		c = configFilePath
+	}
+	// 初始化 viper 配置
+	viper.SetConfigFile(c)
+	viper.SetConfigType(configFileType)
+
+	if err := viper.ReadInConfig(); err != nil {
+		panic(fmt.Sprintf("读取配置文件失败，请检查 config.yaml 配置文件是否存在: %v", err))
+	}
+
+	// 初始化日志
+	if hasLog {
+		initLog()
+		// 热更新配置文件
+		watchConfig()
+	}
+	// 初始化 app 配置
+	AppConfig = newAppConfig()
+	// 初始化数据库配置
+	DBConfig = newDBConfig()
+}
+
+// 监控配置文件变化
+func watchConfig() {
+	viper.WatchConfig()
+	viper.OnConfigChange(func(ev fsnotify.Event) {
+		// 配置文件更新了
+		log.Infof("Config file changed: %s", ev.Name)
+	})
+}
