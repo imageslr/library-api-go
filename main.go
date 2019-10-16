@@ -13,6 +13,7 @@ import (
 	"library-api/database"
 	"library-api/database/factory"
 	"library-api/models/user"
+	"library-api/routes"
 )
 
 var (
@@ -31,6 +32,9 @@ func main() {
 	g := gin.New()
 	setupGin(g)
 
+	// 设置路由
+	routes.Register(g)
+
 	// 设置数据库
 	db, err := setupDB()
 	if err != nil {
@@ -47,7 +51,6 @@ func main() {
 		factory.Mock()
 		fmt.Print("\n\n成功生成 mock 数据！\n\n")
 	} else {
-
 		// 启动服务器
 		fmt.Printf("\n\n Start to listening the incoming requests on http address: %s n\n", config.AppConfig.Addr)
 		if err := http.ListenAndServe(config.AppConfig.Addr, g); err != nil {
