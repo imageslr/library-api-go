@@ -18,6 +18,8 @@ type appConfig struct {
 	APIPrefix string
 	// secret key
 	Key string
+	// Header 中的 token 字段
+	TokenKey string
 }
 
 func newAppConfig() *appConfig {
@@ -25,15 +27,17 @@ func newAppConfig() *appConfig {
 	viper.SetDefault("APP.NAME", "gin_bbs")
 	viper.SetDefault("APP.RUNMODE", "release")
 	viper.SetDefault("APP.ADDR", ":8080")
-	viper.SetDefault("APP.APIPrefix", "/api")
+	viper.SetDefault("APP.API_PREFIX", "/api")
 	viper.SetDefault("APP.KEY", "AYCmJy4cYV1H5kpobYOIOvwgYcghg8A1")
+	viper.SetDefault("APP.TOKEN_KEY", "TOKEN")
 
 	return &appConfig{
 		Name:      viper.GetString("APP.NAME"),
 		RunMode:   viper.GetString("APP.RUNMODE"),
 		Addr:      viper.GetString("APP.ADDR"),
 		URL:       viper.GetString("APP.URL"),
-		APIPrefix: viper.GetString("APP.APIPrefix"),
+		APIPrefix: viper.GetString("APP.API_PREFIX"),
 		Key:       viper.GetString("APP.KEY"),
+		TokenKey:  viper.GetString("APP.TOKEN_KEY"),
 	}
 }

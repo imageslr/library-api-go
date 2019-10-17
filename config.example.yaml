@@ -5,8 +5,9 @@ APP:
   RUNMODE: debug # 模式: debug, release, test
   ADDR: :8033 # 端口
   URL: http://localhost:8033 # 网站 url，内部跳转时会用到该项
-  APIPrefix: /api # API 前缀
+  API_PREFIX: /api # API 前缀
   KEY: AYCmJy4cYV1H5kpobYOIOvwgYcghg8A1 # 加密 key
+  TOKEN_KEY: TOKEN # header token 字段
 
 DB:
   CONNECTION: mysql

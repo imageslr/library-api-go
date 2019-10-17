@@ -99,5 +99,8 @@ func Login(c *gin.Context) {
 
 // CurrentUser - 当前登录用户的信息
 func CurrentUser(c *gin.Context) {
-
+	user, _ := c.Get("user")
+	c.JSON(http.StatusOK, gin.H{
+		"user": user,
+	})
 }

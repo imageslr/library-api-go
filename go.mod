@@ -5,6 +5,7 @@ go 1.13
 require (
 	github.com/Pallinder/go-randomdata v1.2.0
 	github.com/bluele/factory-go v0.0.0-20181130035244-e6e8633dd3fe
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/flosch/pongo2 v0.0.0-20190707114632-bbf5a6c351f4
 	github.com/fsnotify/fsnotify v1.4.7
 	github.com/gin-gonic/gin v1.4.0

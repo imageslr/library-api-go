@@ -4,6 +4,7 @@ import (
 	"library-api/config"
 	"library-api/controllers/test"
 	"library-api/controllers/user"
+	"library-api/middlewares"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,7 +16,15 @@ func Register(router *gin.Engine) {
 	{
 		api.GET("/ping", test.Ping)
 
+		// 注册登录
 		api.POST("/codes", user.SendCode)
 		api.POST("/login", user.Login)
 	}
+
+	authAPI := router.Group(apiPrefix, middlewares.Auth)
+	{
+		// 用户信息
+		authAPI.GET("/user", user.CurrentUser)
+	}
+
 }
