@@ -1,8 +1,11 @@
 package models
 
-import "github.com/jinzhu/gorm"
+import "time"
 
 // BaseModel model 基类
 type BaseModel struct {
-	gorm.Model
+	ID        uint       `json:"id" gorm:"primary_key"`
+	CreatedAt time.Time  `json:"created_at"`
+	UpdatedAt time.Time  `json:"updated_at"`
+	DeletedAt *time.Time `json:"-" sql:"index"`
 }

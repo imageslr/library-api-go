@@ -3,6 +3,7 @@
 /storage/logs
 /node_modules
 config.yaml
+controllers/test
 
 # Binaries for programs and plugins
 *.exe

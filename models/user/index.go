@@ -9,10 +9,10 @@ import (
 // User 用户模型
 type User struct {
 	models.BaseModel
-	Name   string `gorm:"type:varchar(255);not null" sql:"index"`
-	Phone  string `gorm:"type:varchar(255);unique;default:NULL" sql:"index"`
-	Email  string `gorm:"type:varchar(255);unique;default:NULL" sql:"index"`
-	Avatar string `gorm:"type:varchar(255);not null"`
+	Name   string `json:"name" gorm:"type:varchar(255);not null" sql:"index"`
+	Phone  string `json:"phone" gorm:"type:varchar(255);unique;default:NULL" sql:"index"`
+	Email  string `json:"email" gorm:"type:varchar(255);unique;default:NULL" sql:"index"`
+	Avatar string `json:"avatar" gorm:"type:varchar(255);not null"`
 }
 
 // BeforeCreate - hook
