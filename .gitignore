@@ -1,6 +1,6 @@
 # Project specified
 /tmp
-/storage/logs
+/storage
 /node_modules
 config.yaml
 controllers/test
