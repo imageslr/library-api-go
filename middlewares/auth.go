@@ -11,7 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Auth - 用户必须登录才能访问，否则返回 401
+// Auth 用户必须登录才能访问，否则返回 401
 func Auth(c *gin.Context) {
 	user, err := getUser(c)
 	if err != nil {

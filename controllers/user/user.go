@@ -42,7 +42,7 @@ func SendCode(c *gin.Context) {
 	}
 }
 
-// Login - Check verify code and login or create a new user
+// Login checks verify code and login or creates a new user
 func Login(c *gin.Context) {
 	type Form struct {
 		Phone string `form:"phone" binding:"required,numeric,len=11"`
@@ -97,10 +97,15 @@ func Login(c *gin.Context) {
 	})
 }
 
-// CurrentUser - 当前登录用户的信息
+// CurrentUser 当前登录用户的信息
 func CurrentUser(c *gin.Context) {
 	user, _ := c.Get("user")
 	c.JSON(http.StatusOK, gin.H{
 		"user": user,
 	})
+}
+
+// UpdateCurrentUser 更新用户信息
+func UpdateCurrentUser(c *gin.Context) {
+
 }

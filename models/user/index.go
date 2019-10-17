@@ -17,7 +17,7 @@ type User struct {
 	Avatar string `json:"avatar" gorm:"type:varchar(255);not null"`
 }
 
-// BeforeCreate - hook
+// BeforeCreate -
 func (u *User) BeforeCreate() (err error) {
 	// 生成用户头像
 	if u.Avatar == "" {
