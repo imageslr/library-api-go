@@ -4,6 +4,8 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"library-api/models"
+
+	"github.com/Pallinder/go-randomdata"
 )
 
 // User 用户模型
@@ -21,6 +23,10 @@ func (u *User) BeforeCreate() (err error) {
 	if u.Avatar == "" {
 		hash := md5.Sum([]byte(u.Email))
 		u.Avatar = "http://www.gravatar.com/avatar/" + hex.EncodeToString(hash[:])
+	}
+	// 生成用户名
+	if u.Name == "" {
+		u.Name = randomdata.FullName(randomdata.RandomGender)
 	}
 
 	return err
