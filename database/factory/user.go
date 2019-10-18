@@ -38,6 +38,15 @@ func userFactory(i int) *factory.Factory {
 			return "13000000000", nil
 		}
 		return randomdata.PhoneNumber(), nil
+	}).Attr("IDCardImg", func(args factory.Args) (interface{}, error) {
+		if i%2 == 0 {
+			return user.IDCardImg{
+				Front: randomdata.IpV4Address(),
+				Back:  randomdata.IpV4Address(),
+			}, nil
+		} else {
+			return user.IDCardImg{}, nil
+		}
 	})
 }
 
